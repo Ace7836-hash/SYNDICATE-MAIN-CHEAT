@@ -4,14 +4,13 @@ gui.Name = "SYNDICATEKeySystem"
 gui.ResetOnSpawn = false
 gui.Parent = player:WaitForChild("PlayerGui")
 
-
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://17208361335"
 sound.Volume = 1
 sound.Parent = gui
 sound:Play()
 
-
+-- Frame ng Key System
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0,400,0,200)
 frame.Position = UDim2.new(0.5,-200,0.5,-110)
@@ -21,11 +20,10 @@ frame.BackgroundTransparency = 0.1
 frame.Parent = gui
 Instance.new("UICorner",frame).CornerRadius = UDim.new(0,10)
 
-
 local skullBg = Instance.new("ImageLabel")
 skullBg.Size = UDim2.new(1,0,1,0)
 skullBg.BackgroundTransparency = 1
-skullBg.Image = "rbxassetid://85680685047977" -- bagong texture ID
+skullBg.Image = "rbxassetid://85680685047977"
 skullBg.ScaleType = Enum.ScaleType.Crop
 skullBg.ZIndex = 0
 skullBg.Parent = frame
@@ -54,7 +52,6 @@ sub.TextXAlignment = Enum.TextXAlignment.Left
 sub.ZIndex = 1
 sub.Parent = frame
 
-
 local keyBox = Instance.new("TextBox")
 keyBox.Size = UDim2.new(0.9,0,0,40)
 keyBox.Position = UDim2.new(0.05,0,0.45,-20)
@@ -67,7 +64,6 @@ keyBox.ZIndex = 1
 keyBox.Parent = frame
 Instance.new("UICorner", keyBox).CornerRadius = UDim.new(0,6)
 
-
 local errorLabel = Instance.new("TextLabel")
 errorLabel.Size = UDim2.new(1,0,0,20)
 errorLabel.Position = UDim2.new(0,0,0.62,0)
@@ -78,7 +74,6 @@ errorLabel.TextSize = 14
 errorLabel.TextColor3 = Color3.fromRGB(255,70,70)
 errorLabel.ZIndex = 1
 errorLabel.Parent = frame
-
 
 local btn = Instance.new("TextButton")
 btn.Size = UDim2.new(0.9,0,0,40)
@@ -92,13 +87,40 @@ btn.ZIndex = 1
 btn.Parent = frame
 Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
 
-
 local CorrectKey = "VINCENT-ACE-MENU-SYNDICATE"
 
 btn.MouseButton1Click:Connect(function()
 	if keyBox.Text == CorrectKey then
-		gui:Destroy()
-   local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+		gui:Destroy() -- tanggal key system
+
+        -- === LOGO INTRO (Image lang, walang bg) ===
+        local TweenService = game:GetService("TweenService")
+        local introGui = Instance.new("ScreenGui")
+        introGui.Name = "IntroLogo"
+        introGui.IgnoreGuiInset = true
+        introGui.ResetOnSpawn = false
+        introGui.Parent = player:WaitForChild("PlayerGui")
+
+        local logo = Instance.new("ImageLabel")
+        logo.AnchorPoint = Vector2.new(0.5,0.5)
+        logo.Position = UDim2.new(0.5,0,0.5,0)
+        logo.Size = UDim2.new(0.6,0,0.6,0)
+        logo.BackgroundTransparency = 1
+        logo.Image = "rbxassetid://137546567120629" -- Logo ID
+        logo.ImageTransparency = 1
+        logo.Parent = introGui
+
+        -- Fade In
+        TweenService:Create(logo, TweenInfo.new(1), {ImageTransparency = 0}):Play()
+        task.wait(3)
+
+        -- Fade Out
+        local fadeOut = TweenService:Create(logo, TweenInfo.new(1), {ImageTransparency = 1})
+        fadeOut:Play()
+        fadeOut.Completed:Connect(function()
+            introGui:Destroy()
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
 Name = "SYNDICATE MAIN CHEAT",
@@ -624,132 +646,4 @@ title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 title.BorderSizePixel = 0
 title.Text = "SYN AIM VIEWER"
-title.Font = Enum.Font.GothamBold
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextScaled = true
-title.Parent = frame
-
--- Status label
-local status = Instance.new("TextLabel")
-status.Size = UDim2.new(1, 0, 0.7, 0)
-status.Position = UDim2.new(0, 0, 0.3, 0)
-status.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-status.BorderSizePixel = 0
-status.Text = "Aim Viewer: OFF"
-status.Font = Enum.Font.GothamBold
-status.TextColor3 = Color3.fromRGB(255, 255, 255)
-status.TextScaled = true
-status.Parent = frame
-
--- Variables
-local enabled = false
-local aimLines = {}
-
--- Function: toggle ON/OFF
-local function toggle()
-    enabled = not enabled
-    status.Text = "Aim Viewer: " .. (enabled and "ON" or "OFF")
-
-    if not enabled then
-        -- Destroy ALL beams and attachments instantly
-        for _, data in pairs(aimLines) do
-            if data.beam then data.beam:Destroy() end
-            if data.a1 then data.a1:Destroy() end
-        end
-        aimLines = {} -- clear table
-    end
-end
-
--- Toggle when clicking the status label
-status.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        toggle()
-    end
-end)
-
--- Draw aim lines every frame
-RunService.RenderStepped:Connect(function()
-    if enabled then
-        for _, plr in pairs(Players:GetPlayers()) do
-            if plr ~= LocalPlayer and plr.Character and plr.Character:FindFirstChild("Head") then
-                local head = plr.Character.Head
-                local lookVec = head.CFrame.LookVector
-                local origin = head.Position
-                local endpoint = origin + (lookVec * 50)
-
-                -- Draw/update Beam line
-                if not aimLines[plr] then
-                    local attachment0 = Instance.new("Attachment")
-                    attachment0.Parent = head
-                    local attachment1 = Instance.new("Attachment")
-                    attachment1.Parent = workspace.Terrain
-
-                    local beam = Instance.new("Beam")
-                    beam.Color = ColorSequence.new(Color3.fromRGB(0, 255, 0))
-                    beam.FaceCamera = true
-                    beam.Width0 = 0.1
-                    beam.Width1 = 0.1
-                    beam.Attachment0 = attachment0
-                    beam.Attachment1 = attachment1
-                    beam.Parent = head
-
-                    aimLines[plr] = {
-                        a1 = attachment1,
-                        beam = beam
-                    }
-                end
-
-                -- Update beam endpoint
-                aimLines[plr].a1.WorldPosition = endpoint
-            end
-        end
-    end
-end)
-end
-})
-	else
-		btn.Text = "❌ Invalid key .Try again"
-		task.delay(1.5,function()
-			btn.Text = "ENTER KEY"
-		end)
-	end
-end)
-
-local UserInputService = game:GetService("UserInputService")
-local dragging, dragInput, dragStart, startPos
-
-local function update(input)
-	local delta = input.Position - dragStart
-	frame.Position = UDim2.new(
-		startPos.X.Scale,
-		startPos.X.Offset + delta.X,
-		startPos.Y.Scale,
-		startPos.Y.Offset + delta.Y
-	)
-end
-
-frame.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragging = true
-		dragStart = input.Position
-		startPos = frame.Position
-
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
-				dragging = false
-			end
-		end)
-	end
-end)
-
-frame.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		dragInput = input
-	end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-	if input == dragInput and dragging then
-		update(input)
-	end
-end)
+title.Font = Enum.F
