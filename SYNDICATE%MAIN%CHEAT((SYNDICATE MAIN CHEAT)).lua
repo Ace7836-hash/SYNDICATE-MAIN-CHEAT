@@ -84,7 +84,7 @@ local btn = Instance.new("TextButton")
 btn.Size = UDim2.new(0.9,0,0,40)
 btn.Position = UDim2.new(0.05,0,0.85,-20)
 btn.BackgroundColor3 = Color3.fromRGB(40,40,40)
-btn.Text = "ENTER KEY"
+btn.Text = "SUBMIT KEY"
 btn.TextColor3 = Color3.fromRGB(255,255,255)
 btn.Font = Enum.Font.GothamBold
 btn.TextSize = 18
@@ -712,9 +712,9 @@ end
 
 
 	else
-		btn.Text = "❌Invalid key.Try again"
+		btn.Text = "❌Wrong Key!"
 		task.delay(1.5,function()
-			btn.Text = "ENTER KEY"
+			btn.Text = "SUBMIT KEY"
 		end)
 	end
 end)
