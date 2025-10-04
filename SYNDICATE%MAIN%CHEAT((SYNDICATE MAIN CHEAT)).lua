@@ -1,12 +1,12 @@
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
-gui.Name = "88KKeySystem"
+gui.Name = "SYNDICATEKeySystem"
 gui.ResetOnSpawn = false
 gui.Parent = player:WaitForChild("PlayerGui")
 
 
 local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://12221967"
+sound.SoundId = "rbxassetid://17208361335"
 sound.Volume = 1
 sound.Parent = gui
 sound:Play()
@@ -25,7 +25,7 @@ Instance.new("UICorner",frame).CornerRadius = UDim.new(0,10)
 local skullBg = Instance.new("ImageLabel")
 skullBg.Size = UDim2.new(1,0,1,0)
 skullBg.BackgroundTransparency = 1
-skullBg.Image = "rbxassetid://137038652366593" -- bagong texture ID
+skullBg.Image = "rbxassetid://85680685047977" -- bagong texture ID
 skullBg.ScaleType = Enum.ScaleType.Crop
 skullBg.ZIndex = 0
 skullBg.Parent = frame
@@ -34,7 +34,7 @@ local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1,-20,0,40)
 title.Position = UDim2.new(0,10,0,10)
 title.BackgroundTransparency = 1
-title.Text = "88KSHITZ MAIN CHEAT"
+title.Text = "SYNDICATE MAIN CHEAT"
 title.Font = Enum.Font.GothamBold
 title.TextSize = 22
 title.TextColor3 = Color3.fromRGB(255,255,255)
@@ -93,7 +93,7 @@ btn.Parent = frame
 Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
 
 
-local CorrectKey = "VINCENT-MENU-SYNDICATE"
+local CorrectKey = "VINCENT-ACE-MENU-SYNDICATE"
 
 btn.MouseButton1Click:Connect(function()
 	if keyBox.Text == CorrectKey then
