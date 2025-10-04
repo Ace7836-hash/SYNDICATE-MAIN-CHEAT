@@ -93,7 +93,7 @@ btn.Parent = frame
 Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
 
 
-local CorrectKey = "VINCENT-MENU-SYNDICATE"
+local CorrectKey = "ACE"
 
 btn.MouseButton1Click:Connect(function()
 	if keyBox.Text == CorrectKey then
