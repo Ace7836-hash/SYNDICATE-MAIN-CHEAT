@@ -478,7 +478,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/MassiveHubs/loadstrin
 end
 })
 
-local ACETab = Window:CreateTab("SYNDICATE EXECUTOR", "select all")
+local ACETab = Window:CreateTab("SYNDICATE EXECUTOR", "settings")
 local Section = ACETab:CreateSection("FANSTAMA CHEAT")
 
 local Button = ACETab:CreateButton({
