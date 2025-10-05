@@ -87,7 +87,7 @@ btn.ZIndex = 1
 btn.Parent = frame
 Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
 
-local CorrectKey = "MENU"
+local CorrectKey = "HANZ6-SORA47-AC3-HGFD89"
 
 btn.MouseButton1Click:Connect(function()
 	if keyBox.Text == CorrectKey then
@@ -120,7 +120,7 @@ btn.MouseButton1Click:Connect(function()
         fadeOut.Completed:Connect(function()
             introGui:Destroy()
 
-loadstring(game:HttpGet("https://pastebin.com/raw/sck8PAyV"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/jZAKXRRb"))()
         end)
 	else
 		errorLabel.Text = "❌Wrong Key!"
