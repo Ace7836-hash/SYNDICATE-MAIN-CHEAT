@@ -93,7 +93,7 @@ btn.MouseButton1Click:Connect(function()
 	if keyBox.Text == CorrectKey then
 		gui:Destroy() -- tanggal key system
 
-        -- === LOGO INTRO (Image lang, walang bg) ===
+        
         local TweenService = game:GetService("TweenService")
         local introGui = Instance.new("ScreenGui")
         introGui.Name = "IntroLogo"
@@ -112,7 +112,7 @@ btn.MouseButton1Click:Connect(function()
 
         -- Fade In
         TweenService:Create(logo, TweenInfo.new(1), {ImageTransparency = 0}):Play()
-        task.wait(3)
+        task.wait(5)
 
         -- Fade Out
         local fadeOut = TweenService:Create(logo, TweenInfo.new(1), {ImageTransparency = 1})
@@ -120,7 +120,7 @@ btn.MouseButton1Click:Connect(function()
         fadeOut.Completed:Connect(function()
             introGui:Destroy()
 
-loadstring(game:HttpGet("https://pastebin.com/raw/jZAKXRRb"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/ZfRTydJf"))()
         end)
 	else
 		errorLabel.Text = "❌Wrong Key!"
